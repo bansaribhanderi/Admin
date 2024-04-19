@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaEye, FaShopify } from "react-icons/fa";
+import { FaEye, FaRegStar, FaShopify } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import Editpro from "./Editpro";
+import { RiGalleryLine } from "react-icons/ri";
+import { IoCartOutline } from "react-icons/io5";
 
 const Viewpro = () => {
   // console.log();
@@ -481,51 +481,64 @@ const Viewpro = () => {
           <section className="content">
             <div className="container-fluid">
               <div className="row">
-                {data.map((item) => {
+              {data.map((item) => {
                   return (
                     <>
-                      <div className="col-xxl-3 d-flex justify-content-center main-card">
-                        <div className="main">
-                          <Card style={{ width: "18rem" }}>
-                            <Card.Img
-                              variant="top"
-                              className="img"
-                              src={item.image[0]}
-                            />
-                            <Card.Body>
-                              <p className="title">{item.title}</p>
-                              <p className="price">
-                                ${item.price}
-                                <span className="dis">
-                                  ({item.discount}% OFF)
-                                </span>
-                              </p>
-
-                              <p className="disc">{item.description}</p>
-                            </Card.Body>
-                            <div className="btn d-flex">
-                              <Button
-                                variant="primary"
-                                className="update"
+                      {/* left column */}
+                      <div className="col-xxl-3 d-flex justify-content-center">
+                        <div class="outer-image">
+                          <img src={item.image[0]} alt="" />
+                          <div class="inner-image">
+                            <img src={item.image[1]} alt="" />
+                          </div>
+                          <div class="products-fonts">
+                            <h3>{item.title}</h3>
+                            <div className="product-price">
+                              <span className="first-span">${item.price}</span>
+                              <span className="second-span">
+                                {item.discount}% OFF
+                              </span>
+                            </div>
+                            <p>{item.description}</p>
+                            <div className="product-btn d-flex justify-content-between align-items-end">
+                              <button
+                                className="update change-card"
                                 onClick={() => {
-                                  setId(item._id);
                                   setModalShow(true);
+                                  setId(item._id);
                                 }}
                               >
                                 Update
-                              </Button>
+                              </button>
 
-                              <Button
+                              <button
+                                className="delete change-card"
                                 variant="primary"
-                                className="delete"
                                 onClick={(e) => deleteuser(e, item._id)}
                               >
                                 Delete
-                              </Button>
+                              </button>
                             </div>
-                          </Card>
+                          </div>
+                          <div class="hovereffect-icons">
+                            <div class="lower-icon">
+                              <div class="mainthree-icon">
+                                <IoCartOutline />
+                              </div>
+                              <div class="mainthree-icon">
+                                <FaRegStar />
+                              </div>
+                              <div class="mainthree-icon">
+                                <RiGalleryLine />
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      {/*/.col (left) */}
+                      {/* right column */}
+
+                      {/*/.col (right) */}
                     </>
                   );
                 })}
